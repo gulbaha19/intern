@@ -1,24 +1,27 @@
+import axios from "axios";
 import { Dispatch } from "react";
 import { UsersActionType, UsersAction } from "../../types/usersTypes";
-export type Arguments = {
-  page: number;
-};
-export const fetchUsers =
-  ({ page = 1 }: Arguments) =>
-  (dispatch: Dispatch<UsersAction>) => {
-    dispatch({ type: UsersActionType.FETCH_USERS });
+// import { Dispatch } from "../../store/index";
 
-    fetch(`https://reqres.in/api/users?page=2`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({ type: UsersActionType.SET_USERS, payload: data.results });
-        console.log(data, "fe");
-
-        dispatch({
-          type: UsersActionType.SET_PAGES,
-          payload: {
-            page: data.page,
-          },
+export const fetchUsers = (page: number) => (dispatch: Dispatch<UsersAction>) => {
+  axios.get(`https://reqres.in/api/users?page=${page}`).then((data) => {
+    console.log("res", data.data);
+    data.status === 200
+      ? dispatch({
+          type: UsersActionType.SET_USERS,
+          payload: data.data.data,
+        })
+      : dispatch({
+          type: "isLoaded",
+          payload: "error",
         });
-      });
-  };
+    dispatch({
+      type: UsersActionType.SET_PAGES,
+      payload: data.data.total_pages,
+    });
+    dispatch({
+      type: UsersActionType.SET_PAGE,
+      payload: data.data.page,
+    });
+  });
+};

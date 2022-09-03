@@ -28,13 +28,15 @@ const Box = styled("div")`
   box-sizing: border-box;
   border-radius: 8px;
   transition: 0.2s;
+  display: flex;
+  justify-content: center;
   &:hover {
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
   }
 `;
 const Image = styled("img")`
-  width: 240px;
-  height: 260px;
+  width: 200px;
+  height: 240px;
   object-fit: contain;
 `;
 const ImageRound = styled("img")`
@@ -51,7 +53,7 @@ const Title = styled("h3")`
   margin-top: 12px;
 `;
 const Email = styled("h3")`
-  font-size: 24px;
+  font-size: 12px;
   color: #19191d;
   margin-top: 12px;
 `;

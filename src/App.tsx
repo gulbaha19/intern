@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { Protected } from "./components/Protected";
 import { Auth } from "./context/Auth";
 import { LogIn } from "./pages/LogIn";
+import { Profile } from "./pages/Profile";
 import { UsersPage } from "./pages/UsersPage";
 
 function App() {
@@ -15,8 +16,6 @@ function App() {
   return (
     <Auth.Provider value={{ token, setToken }}>
       <div className="App">
-        <Navbar />
-
         <Routes>
           <Route
             path="/"
@@ -31,7 +30,17 @@ function App() {
             path="/users"
             element={
               <Protected isLoggedIn={token !== "" ? true : false}>
+                <Navbar />
                 <UsersPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Protected isLoggedIn={token !== "" ? true : false}>
+                <Navbar />
+                <Profile />
               </Protected>
             }
           />

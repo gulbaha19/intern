@@ -36,6 +36,7 @@ export const LogIn = () => {
       email,
       password,
     };
+    localStorage.setItem("email", data.email);
     sendUserData(data);
   };
   function sendUserData(userData: LoginType) {
@@ -48,7 +49,6 @@ export const LogIn = () => {
         nav();
         setToken(data.data.token);
         localStorage.setItem("idToken", data.data.token);
-        localStorage.setItem("id", data.data.id);
       })
       .catch((error) => {
         console.log({ ...error });

@@ -3,7 +3,6 @@ const initState: UsersState = {
   data: [],
   loading: false,
   error: false,
-
   page: 1,
   total_pages: 2,
 };
@@ -13,14 +12,19 @@ export const usersReducer = (state = initState, action: { type: any; payload: an
     case UsersActionType.FETCH_USERS:
       return {
         ...state,
-        characters: action.payload,
-        isLoading: true,
+        data: action.payload,
+
+        loading: false,
       };
-      break;
+
     case UsersActionType.SET_USERS:
-      return { ...state, movies: action.payload };
+      return { ...state, data: action.payload };
     case UsersActionType.SET_PAGES:
+      return { ...state, total_pages: action.payload };
+
+    case UsersActionType.SET_PAGE:
       return { ...state, page: action.payload };
+
     default:
       return state;
   }

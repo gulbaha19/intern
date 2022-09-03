@@ -16,9 +16,12 @@ import { useContext, useState } from "react";
 import { Auth } from "../context/Auth";
 import { Divider, ListItemIcon } from "@mui/material";
 import { Logout } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import { UsersType, UserType } from "../types/usersTypes";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useContext(Auth);
+
   const [searchText, setSearchText] = useState<string>("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorElAvatar, setAnchorElAvatar] = React.useState<null | HTMLElement>(null);
@@ -30,7 +33,14 @@ export const Navbar = () => {
   const handleCloseAvatar = () => {
     setAnchorElAvatar(null);
   };
-
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+  const usersFromStore = useSelector((state: any) => state.user.data);
+  const users = usersFromStore;
+  const email = localStorage.getItem("email");
+  console.log(email, "lllll");
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -54,11 +64,7 @@ export const Navbar = () => {
                     aria-controls={openAvatar ? "account-menu" : undefined}
                     aria-haspopup="true"
                     aria-expanded={openAvatar ? "true" : undefined}>
-                    {/* {user?.photoURL ? (
-                      <Avatar alt="user" sx={{ width: 32, height: 32 }} src={user.photoURL} />
-                    ) : (
-                      <div>{user.email}</div>
-                    )} */}
+                    <div>{email}</div>
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -99,7 +105,7 @@ export const Navbar = () => {
                     <Avatar /> Profile
                   </MenuItem>
                   <Divider />
-                  <MenuItem>
+                  <MenuItem onClick={() => logout()}>
                     <ListItemIcon>
                       <Logout fontSize="small" />
                     </ListItemIcon>
