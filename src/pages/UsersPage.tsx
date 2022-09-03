@@ -3,11 +3,12 @@ import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserBlock } from "../components/UserBlock";
 import { fetchUsers } from "../store/actions/fetchUsers";
-import { Dispatch } from "../store";
+
 import { UserType } from "../types/usersTypes";
+import { useTypedDispatch } from "../hooks/useTypedDispatch";
 
 export const UsersPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   useEffect(() => {
     dispatch(fetchUsers(1));
