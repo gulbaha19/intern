@@ -4,34 +4,19 @@ import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Auth } from "../context/Auth";
-export type LoginType = {
-  email: string;
-  password: string;
-};
-export const Wrapper = styled("div")`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 50px;
-`;
-export const Form = styled("form")`
-  display: flex;
-  flex-direction: column;
-`;
+import { Form, LoginType, Wrapper } from "./LogIn";
 
-export const LogIn = () => {
+export const RegisterPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useContext(Auth);
   const users = useSelector((state) => state);
-  console.log(users, "jgu");
   function nav() {
     navigate("/users");
   }
   const validateForm = (e: React.FormEvent) => {
     e.preventDefault();
-
     const data = {
       email,
       password,
@@ -41,7 +26,7 @@ export const LogIn = () => {
   };
   function sendUserData(userData: LoginType) {
     axios
-      .post(`https://reqres.in/api/login`, {
+      .post(`https://reqres.in/api/register`, {
         email: userData.email,
         password: userData.password,
       })
@@ -82,11 +67,9 @@ export const LogIn = () => {
           Sign In
         </Button>
         <p>
-          If you don't have an account
-          <span
-            style={{ color: "red", marginLeft: "5px", cursor: "pointer" }}
-            onClick={() => navigate("/registration")}>
-            Register here
+          If you already have an account
+          <span style={{ color: "red", marginLeft: "5px" , cursor:'pointer'}} onClick={() => navigate("/")}>
+            Log in here
           </span>
         </p>
       </Form>

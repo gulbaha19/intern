@@ -6,6 +6,7 @@ import { Protected } from "./components/Protected";
 import { Auth } from "./context/Auth";
 import { LogIn } from "./pages/LogIn";
 import { Profile } from "./pages/Profile";
+import { RegisterPage } from "./pages/RegisterPage";
 import { UsersPage } from "./pages/UsersPage";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               </Protected>
             }
           />
+          <Route path="/registration" element={<RegisterPage />} />
         </Routes>
       </div>
     </Auth.Provider>
