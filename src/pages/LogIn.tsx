@@ -2,6 +2,7 @@ import { Button, styled, TextField } from "@mui/material";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Auth } from "../context/Auth";
 type LoginType = {
   email: string;
@@ -19,12 +20,15 @@ const Form = styled("form")`
 `;
 
 export const LogIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useContext(Auth);
   const users = useSelector((state) => state);
   console.log(users, "jgu");
-
+  function nav() {
+    navigate("/users");
+  }
   const validateForm = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -39,12 +43,12 @@ export const LogIn = () => {
       .post(`https://reqres.in/api/register`, {
         email: userData.email,
         password: userData.password,
-        returnSecureToken: userData,
       })
       .then((data) => {
-        // console.log(data.data.idToken)
-        setToken(data.data.idToken);
-        localStorage.setItem("idToken", data.data.idToken);
+        nav();
+        setToken(data.data.token);
+        localStorage.setItem("idToken", data.data.token);
+        localStorage.setItem("id", data.data.id);
       })
       .catch((error) => {
         console.log({ ...error });
@@ -77,7 +81,6 @@ export const LogIn = () => {
         <Button type="submit" variant="contained">
           Sign In
         </Button>
-        {token ? "AUTHORISED" : "NOT AUTHORISED"}
       </Form>
     </Wrapper>
   );
