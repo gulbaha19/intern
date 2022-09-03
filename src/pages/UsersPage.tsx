@@ -23,32 +23,24 @@ export const UsersPage = () => {
   const pagesFromStore = useSelector((state: any) => state.user.total_pages);
   const pageFromStore = useSelector((state: any) => state.user.page);
 
-  console.log(usersFromStore, "gggg");
-  const loadingStatus = false;
   const users = usersFromStore;
 
-  console.log(users);
   return (
     <>
-      {loadingStatus ? (
-        <CircularProgress />
-      ) : (
-        <>
-          {" "}
-          <Grid container spacing={2}>
-            {users.map((user: UserType) => (
-              <Grid item xs={12} sm={6} md={3} key={user.id}>
-                <UserBlock user={user} />
-              </Grid>
-            ))}
+      <Grid container spacing={2}>
+        {users.map((user: UserType) => (
+          <Grid item xs={12} sm={6} md={3} key={user.id}>
+            <UserBlock user={user} />
           </Grid>
-          <Pagination
-            count={pagesFromStore}
-            page={pageFromStore}
-            onChange={(e, value) => changePage(value)}
-          />
-        </>
-      )}
+        ))}
+      </Grid>
+      <div style={{ margin: "20px  0" }}>
+        <Pagination
+          count={pagesFromStore}
+          page={pageFromStore}
+          onChange={(e, value) => changePage(value)}
+        />
+      </div>
     </>
   );
 };

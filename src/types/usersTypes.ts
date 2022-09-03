@@ -23,7 +23,6 @@ export type UsersState = {
   total_pages: number;
 };
 export type FetchUsersAction = {
-  // type: UsersActionType.FETCH_USERS;
   type: UsersActionType.FETCH_USERS;
 };
 
@@ -34,9 +33,7 @@ export type SET_USERS = {
   payload: any;
 };
 export type SET_PAGES = {
-  // type: UsersActionType.SET_PAGES;
-  // payload: { page: number };
-  type: any;
-  payload: any;
+  type: UsersActionType.SET_PAGES;
+  payload: { page: number };
 };
 export type UsersAction = SET_USERS | SET_PAGES | FetchUsersAction | SET_PAGES;

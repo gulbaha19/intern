@@ -16,15 +16,17 @@ export const usersReducer = (state = initState, action: { type: any; payload: an
 
         loading: false,
       };
-
+      break;
     case UsersActionType.SET_USERS:
       return { ...state, data: action.payload };
     case UsersActionType.SET_PAGES:
       return { ...state, total_pages: action.payload };
 
     case UsersActionType.SET_PAGE:
-      return { ...state, page: action.payload };
-
+      return { ...state, total_page: action.payload };
+    case "isLoaded":
+      state.loading = false;
+      break;
     default:
       return state;
   }

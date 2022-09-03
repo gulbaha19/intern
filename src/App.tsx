@@ -4,14 +4,13 @@ import { Navbar } from "./components/Navbar";
 import { Protected } from "./components/Protected";
 import { Auth } from "./context/Auth";
 import { LogIn } from "./pages/LogIn";
+import NotFound from "./pages/NotFound";
 import { Profile } from "./pages/Profile";
 import { RegisterPage } from "./pages/RegisterPage";
 import { UsersPage } from "./pages/UsersPage";
 
 function App() {
-  // const rrr = useContext(Auth);
   const [token, setToken] = useState<string>(localStorage.getItem("idToken") || "");
-  console.log("tokan ", token);
 
   return (
     <Auth.Provider value={{ token, setToken }}>
@@ -45,6 +44,7 @@ function App() {
             }
           />
           <Route path="/registration" element={<RegisterPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Auth.Provider>

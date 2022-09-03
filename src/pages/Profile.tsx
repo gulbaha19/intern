@@ -14,7 +14,6 @@ export const Profile = () => {
   const usersFromStore = useSelector((state: any) => state.user.data);
   const user = usersFromStore.find((userO: UserType) => userO.email === email);
 
-  console.log(usersFromStore, "profile", email);
 
   return (
     <div style={{ display: "flex", flexDirection: "row", position: "relative" }}>

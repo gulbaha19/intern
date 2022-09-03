@@ -5,7 +5,6 @@ import { UsersActionType, UsersAction } from "../../types/usersTypes";
 
 export const fetchUsers = (page: number) => (dispatch: Dispatch<UsersAction>) => {
   axios.get(`https://reqres.in/api/users?page=${page}`).then((data) => {
-    console.log("res", data.data);
     data.status === 200
       ? dispatch({
           type: UsersActionType.SET_USERS,
@@ -13,7 +12,7 @@ export const fetchUsers = (page: number) => (dispatch: Dispatch<UsersAction>) =>
         })
       : dispatch({
           type: "isLoaded",
-          payload: "error",
+          payload: false,
         });
     dispatch({
       type: UsersActionType.SET_PAGES,

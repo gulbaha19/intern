@@ -40,7 +40,7 @@ export const Navbar = () => {
   const usersFromStore = useSelector((state: any) => state.user.data);
   const users = usersFromStore;
   const email = localStorage.getItem("email");
-  console.log(email, "lllll");
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
