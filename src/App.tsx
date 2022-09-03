@@ -1,5 +1,4 @@
-import { Login } from "@mui/icons-material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Protected } from "./components/Protected";

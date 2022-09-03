@@ -2,7 +2,7 @@ import { Button, styled, TextField } from "@mui/material";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Auth } from "../context/Auth";
 export type LoginType = {
   email: string;

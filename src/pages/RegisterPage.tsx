@@ -1,8 +1,7 @@
-import { Button, styled, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Auth } from "../context/Auth";
 import { Form, LoginType, Wrapper } from "./LogIn";
 
@@ -11,7 +10,7 @@ export const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useContext(Auth);
-  const users = useSelector((state) => state);
+
   function nav() {
     navigate("/users");
   }
@@ -68,7 +67,9 @@ export const RegisterPage = () => {
         </Button>
         <p>
           If you already have an account
-          <span style={{ color: "red", marginLeft: "5px" , cursor:'pointer'}} onClick={() => navigate("/")}>
+          <span
+            style={{ color: "red", marginLeft: "5px", cursor: "pointer" }}
+            onClick={() => navigate("/")}>
             Log in here
           </span>
         </p>
