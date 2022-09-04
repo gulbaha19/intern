@@ -18,6 +18,7 @@ import { Divider, ListItemIcon } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { UsersType, UserType } from "../types/usersTypes";
+import { hover } from "@testing-library/user-event/dist/hover";
 export const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useContext(Auth);
@@ -45,7 +46,7 @@ export const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: "flex" }}>
+          <Box sx={{ flexGrow: 1, display: "flex", marginLeft: "100px" }}>
             <Button
               onClick={() => navigate("/users")}
               sx={{ my: 2, color: "white", display: "block" }}>
@@ -64,7 +65,7 @@ export const Navbar = () => {
                     aria-controls={openAvatar ? "account-menu" : undefined}
                     aria-haspopup="true"
                     aria-expanded={openAvatar ? "true" : undefined}>
-                    <div>{email}</div>
+                    <div style={{ color: "white" }}>{email}</div>
                   </IconButton>
                 </Tooltip>
                 <Menu
